@@ -9,22 +9,36 @@ function Letter({value, secretWord, life, setLife, letters, setLetters}) {
     function verifyLetter() {
         console.log(secretWord.indexOf(value));
         const index = secretWord.indexOf(value);
-        setIsDisabled(true);
+        setIsDisabled(true)
         
         if(index === -1) {
             setLife(life - 1);
 
         } else {
-            let holdLetter = letters;
-            holdLetter[index] = value;
+            const indexOfLetters = []
+
+            secretWord.forEach((letter, index) => {
+                if(letter === value) {
+                    indexOfLetters.push(index)
+                }
+            });
+                       
+            const holdLetter = letters;
+
+            indexOfLetters.forEach(index => {
+                holdLetter[index] = value.toUpperCase();
+            });
+
+            console.log(holdLetter)
+
             setLetters([...holdLetter]);
-            isWinner()
+            isWinner();
         }
 
         function isWinner() {
             if(!letters.includes("_ ")) {
                 setTimeout(() => {
-                    alert("VOCÊ GANHOU!");
+                    alert("PARABÉNS, VOCÊ GANHOU!");
                     window.location.reload();
                 }, 200);
                 
