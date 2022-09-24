@@ -22,7 +22,7 @@ export default function Game() {
         return Math.random() - 0.5;
     }
 
-    const word = arrayWords.slice(0, 1).toString();
+    const word = arrayWords.slice(0, 1).toString().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     const arrayWord = word.split("");
 
     if(life === 0) {
@@ -30,23 +30,16 @@ export default function Game() {
             alert("VOCÊ PERDEU!");
             window.location.reload();
         }, 200);
-    }
-    
-    
-    
+    }   
 
     useEffect( () => {
         setSecretWord(arrayWord);
         const quantityOfLetters = arrayWord.length;
         setLetters(Array(quantityOfLetters).fill("_ "));
-        console.log(word)
-
-     
-
+        console.log(word);
         
-    }, []);
-    
-    
+        // eslint-disable-next-line
+    }, []);    
 
     return (
         <Content>
