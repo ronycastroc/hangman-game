@@ -1,5 +1,11 @@
+import GlobalStyle from "../assets/style/GlobalStyle";
+import Game from "./Game";
+
 export default function App() {
     return (
-        <><h1>OI</h1></>
+        <>
+            <GlobalStyle />
+            <Game />
+        </>
     )
 }
